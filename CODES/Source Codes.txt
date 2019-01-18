@@ -1,0 +1,23 @@
+LINKS
+
+https://developers.google.com/apps-script/reference/spreadsheet/
+
+https://www.google.com/script/start/
+
+https://developers.google.com/speed/libraries/
+
+http://brackets.io/
+
+
+
+function lesson3() {
+    Logger.log('One');
+    var test = 1000;
+    Logger.log('Hello World');
+}
+ 
+function lesson2() {
+    var ss = SpreadsheetApp.openById('1m5FAHkH4gd5VUZa4GnM-ftyKhATVuya-nAPVYlFjp9M');
+    var sheet = ss.getSheetByName('messages');
+    sheet.appendRow(['test1', 'test2', 'test3', 'test4']);
+}

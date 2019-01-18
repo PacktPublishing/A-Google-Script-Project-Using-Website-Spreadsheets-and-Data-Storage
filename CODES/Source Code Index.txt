@@ -1,0 +1,44 @@
+
+Section 2, Lecture 9
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Apps Script Tester</title>
+</head>
+ 
+<body>
+    <form id="myForm"> Name:
+        <input type="text" name="name" value="tester">
+        <br> Email:
+        <input type="text" name="email" value="tester@tester.com">
+        <br> Message:
+        <br>
+        <textarea name="message"></textarea>
+        <br>
+        <button type="submit" id="mySubmit">Send Data</button>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        const url = "https://script.google.com/macros/s/AKfycby4jMv1u4zX4X8nuG-omlATMaOq57ha-1czEEK2IdPOldgooxlc/exec";
+        $('#myForm').on('submit', function (e) {
+            e.preventDefault();
+            let holder = $('#myForm').serialize();
+            console.log(holder);
+            $.ajax({
+                url: url
+                , method: 'GET'
+                , dataType: 'json'
+                , data: holder
+                , success: function (data) {
+                    console.log(data);
+                }
+            })
+        })
+    </script>
+</body>
+ 
+</html>

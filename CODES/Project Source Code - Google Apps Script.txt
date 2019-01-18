@@ -1,0 +1,45 @@
+
+Section 2, Lecture 14
+function doGet(e) {
+    var ss = SpreadsheetApp.openById('1m5FAHkH4gd5VUZa4GnM-ftyKhATVuya-nAPVYlFjp9M');
+    var sheet = ss.getSheetByName('messages');
+    var rows = sheet.getDataRange().getValues();
+    Logger.log(e.parameter.name);
+    var headings = rows[0].map(String.toLowerCase);
+    Logger.log(headings);
+    var holder = [];
+    for (x in headings) {
+        Logger.log(headings[x]);
+        var output = (headings[x] in e.parameters) ? e.parameter[headings[x]] : 'none';
+        if (headings[x] == 'id') {
+            output = getRandom();
+        }
+        if (headings[x] == 'timestamp') {
+            output = new Date();
+        }
+        holder.push(output);
+    }
+    Logger.log(holder);
+    sheet.appendRow(holder);
+    var lRow = sheet.getLastRow();
+    return ContentService.createTextOutput(JSON.stringify({
+        'status': 'success'
+        , 'lastRow': lRow
+    }))
+}
+ 
+function getRandom() {
+    return (new Date().getTime()).toString(36);
+}
+ 
+function lesson3() {
+    Logger.log('One');
+    var test = 1000;
+    Logger.log('Hello World');
+}
+ 
+function lesson2() {
+    var ss = SpreadsheetApp.openById('1m5FAHkH4gd5VUZa4GnM-ftyKhATVuya-nAPVYlFjp9M');
+    var sheet = ss.getSheetByName('messages');
+    sheet.appendRow(['test1', 'test2', 'test3', 'test4']);
+}
